@@ -7,7 +7,6 @@ namespace TeaTimeDemo.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<Category> Categories { get; set; }

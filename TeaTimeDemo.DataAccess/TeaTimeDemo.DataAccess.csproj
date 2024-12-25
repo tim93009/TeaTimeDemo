@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TeaTimeDemo.DataAccess\TeaTimeDemo.DataAccess.csproj" />
+    <ProjectReference Include="..\TeaTimeDemo.Models\TeaTimeDemo.Models.csproj" />
+    <ProjectReference Include="..\TeaTimeDemo.Utility\TeaTimeDemo.Utility.csproj" />
   </ItemGroup>
 
 </Project>

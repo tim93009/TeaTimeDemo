@@ -4,12 +4,12 @@ using TeaTimeDemo.DataAccess.Repository.IRepository;
 using TeaTimeDemo.Models;
 
 
-namespace TeaTimeDemo.Controllers
+namespace TeaTimeDemo.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -87,7 +87,7 @@ namespace TeaTimeDemo.Controllers
         public IActionResult DeletePOST(int? id)
         {
             Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }

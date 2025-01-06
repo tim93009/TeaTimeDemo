@@ -1,0 +1,18 @@
+appsettings.json 檔案中的
+ConnectionStrings 的
+DefaultConnection：
+
+筆電：
+Server=LAPTOP-7GET9CKD;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerCertificate=true
+
+資策會電腦：
+Server=DESKTOP-AVM54SB;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerCertificate=true
+
+
+
+
+
+
+
+
+

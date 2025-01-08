@@ -32,7 +32,7 @@ namespace TeaTimeDemo.Areas.Admin.Controllers
         {            
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Product.Add(obj);
                 _unitOfWork.Save();
                 TempData["success"] = " 類別新增成功! ";
                 return RedirectToAction("Index");
@@ -46,22 +46,22 @@ namespace TeaTimeDemo.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
-            if (categoryFromDb == null)
+            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(categoryFromDb);
+            return View(productFromDb);
         }
 
         [HttpPost]
-        public IActionResult Edit(Category obj)
+        public IActionResult Edit(Product obj)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Product.Update(obj);
                 _unitOfWork.Save();
-                TempData["success"] = " 類別更新成功! ";
+                TempData["success"] = " 產品編輯成功! ";
                 return RedirectToAction("Index");
             }
             return View();
@@ -73,25 +73,25 @@ namespace TeaTimeDemo.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
-            if (categoryFromDb == null)
+            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(categoryFromDb);
+            return View(productFromDb);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
+            Product? obj = _unitOfWork.Product.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Product.Remove(obj);
             _unitOfWork.Save();
-            TempData["success"] = " 類別刪除成功! ";
+            TempData["success"] = " 產品刪除成功! ";
             return RedirectToAction("Index");
         }
     }

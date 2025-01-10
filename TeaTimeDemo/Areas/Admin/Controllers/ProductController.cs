@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using TeaTimeDemo.DataAccess.Data;
 using TeaTimeDemo.DataAccess.Repository.IRepository;
 using TeaTimeDemo.Models;
+using TeaTimeDemo.Models.ViewModels;
 
 
 namespace TeaTimeDemo.Areas.Admin.Controllers
@@ -25,23 +26,31 @@ namespace TeaTimeDemo.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+            ProductVM productVM = new()
             {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
-            return View();
+                CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                Product = new Product()
+            };
+            return View(productVM);
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj)
-        {            
+        public IActionResult Create(ProductVM productVM)
+        {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
-                TempData["success"] = " 類別新增成功! ";
+                TempData["success"] = " 產品新增成功! ";
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                productVM.
             }
             return View();
         }

@@ -13,6 +13,7 @@ namespace TeaTimeDemo.DataAccess.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Store> Stores { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -57,6 +58,12 @@ namespace TeaTimeDemo.DataAccess.Data
                     ImageUrl = ""
                 }
             );
+
+            modelBuilder.Entity<Store>().HasData(
+                new Store { Id = 1, Name = "台中一中店", Address = "台中市北區三民路三段129號", City = "台中市", PhoneNumber = "0987654321", Description = "鄰近台中一中商圈，學生消暑勝地。" },
+                new Store { Id = 2, Name = "台北大安店", Address = "台北市大安區大安路一段11號", City = "台北市", PhoneNumber = "0911111111", Description = "濃厚的教育文化及熱鬧繁華的商圈，豐富整體氛圍。" },
+                new Store { Id = 3, Name = "台南安平店", Address = "台南市安平區安平路22號", City = "台南市", PhoneNumber = "0922222222", Description = "歷史造就了現今的安平，茶香中蘊含了悠遠的歷史。" }
+                );
         }
     }
 }

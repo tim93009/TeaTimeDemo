@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeaTimeDemo.Models;
 
 namespace TeaTimeDemo.DataAccess.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface IStoreRepository : IRepository<Store>
     {
-        ICategoryRepository Category { get; }
-        IProductRepository Product { get; }
-        IStoreRepository Store { get; }
-        void Save();
+        void Update(Store obj);        
     }
 }

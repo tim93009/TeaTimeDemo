@@ -45,7 +45,7 @@ namespace TeaTimeDemo.Areas.Customer.Controllers
             shoppingCart.ApplicationUserId = userId;
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId && u.Ice == shoppingCart.Ice && u.Sweetness == shoppingCart.Sweetness);
             
-            if(cartFromDb == null)
+            if(cartFromDb != null)
             {
                 //購物車已建立
                 cartFromDb.Count += shoppingCart.Count;

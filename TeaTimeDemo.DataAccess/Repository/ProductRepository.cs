@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TeaTimeDemo.DataAccess.Data;
@@ -12,17 +11,11 @@ namespace TeaTimeDemo.DataAccess.Repository
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
-        private readonly ApplicationDbContext _db;
-
+        private ApplicationDbContext _db;
         public ProductRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
-        }        
-
-        //public void Save()
-        //{
-        //    _db.SaveChanges();
-        //}
+        }
 
         public void Update(Product obj)
         {
@@ -30,15 +23,15 @@ namespace TeaTimeDemo.DataAccess.Repository
             if (objFromDb != null)
             {
                 objFromDb.Name = obj.Name;
-                objFromDb.Price = obj.Price;
+                objFromDb.Size = obj.Size;
                 objFromDb.Price = obj.Price;
                 objFromDb.Description = obj.Description;
-                objFromDb.Category = obj.Category;
-                if(objFromDb.ImageUrl != null)
+                objFromDb.CategoryId = obj.CategoryId;
+                if (objFromDb.ImageUrl != null)
                 {
                     objFromDb.ImageUrl = obj.ImageUrl;
                 }
-            }            
+            }
         }
     }
 }

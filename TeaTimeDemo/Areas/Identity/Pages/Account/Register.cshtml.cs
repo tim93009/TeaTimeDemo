@@ -44,7 +44,7 @@ namespace TeaTimeDemo.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IUnitOfWork unitOfWork)            
+            IUnitOfWork unitOfWork)
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -99,16 +99,6 @@ namespace TeaTimeDemo.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
-            public string? Role {  get; set; }
-            [ValidateNever]
-            public IEnumerable<SelectListItem> RoleList { get; set; }
-
-            [Required]
-            public string Name { get; set; }
-            public string? Address {  get; set; }
-            public string? PhoneNumber {  get; set; }
-            public int? StoreId { get; set; }
-            public IEnumerable<SelectListItem> StoreList { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -118,17 +108,28 @@ namespace TeaTimeDemo.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string? Role { get; set; }
+            [ValidateNever]
+            public IEnumerable<SelectListItem> RoleList { get; set; }
+
+            [Required]
+            public string Name { get; set; }
+            public string? Address { get; set; }
+            public string? PhoneNumber { get; set; }
+            public int? StoreId { get; set; }
+            public IEnumerable<SelectListItem> StoreList { get; set; }
         }
 
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if(!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+            if (!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
             {
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Manager)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();                
+                _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
             }
 
             Input = new()
@@ -138,7 +139,8 @@ namespace TeaTimeDemo.Areas.Identity.Pages.Account
                     Text = i,
                     Value = i
                 }),
-                StoreList = _unitOfWork.Store.GetAll().Select(i => new SelectListItem{
+                StoreList = _unitOfWork.Store.GetAll().Select(i => new SelectListItem
+                {
                     Text = i.Name,
                     Value = i.Id.ToString()
                 })
@@ -158,23 +160,20 @@ namespace TeaTimeDemo.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-
                 user.Name = Input.Name;
                 user.Address = Input.Address;
                 user.PhoneNumber = Input.PhoneNumber;
-
-                if(Input.Role == SD.Role_Employee || Input.Role == SD.Role_Manager)
+                if (Input.Role == SD.Role_Employee || Input.Role == SD.Role_Manager)
                 {
                     user.StoreId = Input.StoreId;
                 }
-
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    if(!String.IsNullOrEmpty(Input.Role))
+                    if (!String.IsNullOrEmpty(Input.Role))
                     {
                         await _userManager.AddToRoleAsync(user, Input.Role);
                     }
@@ -201,7 +200,14 @@ namespace TeaTimeDemo.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Manager))
+                        {
+                            TempData["success"] = "建立新使用者成功";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }

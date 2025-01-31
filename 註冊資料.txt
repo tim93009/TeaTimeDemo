@@ -1,41 +1,38 @@
-Admin帳號：
+Admin(開發者)：
 
-tim93009@gmail.com
+帳：admin@gmail.com
+密：Admin123*
 
-Admin123*
+額外權限：內容管理
 
-
-
-一般使用者帳號：
-
-a@gmail.com
-
-P@ssw0rd
+===
 
 
+Manager(管理者)：
 
+帳：manager@gmail.com
+密：Admin123*
 
+額外權限：內容管理
 
-b@gmail.com
+===
 
-P@ssw0rd
+Employee(員工)：
 
-
-
-
-c@gmail.com
-
-P@ssw0rd
-
+帳：employee@gmail.com
+密：Admin123*
 
 
 ===
 
-Customer：
+Customer(顧客)：
 
-d@gmail.com
+帳：customer@gmail.com
+密：Admin123*
 
-P@ssw0rd
+
+
+
 
 
 

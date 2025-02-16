@@ -34,6 +34,12 @@ ENTRYPOINT ["dotnet", "TeaTimeDemo.dll"]
 
 FROM mcr.microsoft.com/mssql/server:2022-latest
 
+USER root
+
+RUN chown -R mssql:mssql /opt/mssql
+
+USER mssql
+
 ENV ACCEPT_EULA=Y
 
 ENV SA_PASSWORD=P@ssw0rd

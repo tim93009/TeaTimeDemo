@@ -9,7 +9,7 @@ Server=LAPTOP-7GET9CKD;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerC
 Server=DESKTOP-AVM54SB;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerCertificate=true
 
 Render：
-Server=192.168.1.103,1433;Database=TeaTime;User Id=sa;Password=P@ssw0rd;
+Server=https://teatimedemo.onrender.com;Database=TeaTime;User Id=sa;Password=P@ssw0rd;
 
 
 

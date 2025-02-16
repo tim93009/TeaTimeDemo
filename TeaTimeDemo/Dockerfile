@@ -26,3 +26,18 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TeaTimeDemo.dll"]
+
+
+
+
+
+
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+ENV ACCEPT_EULA=Y
+
+ENV SA_PASSWORD=P@ssw0rd
+
+ENV MSSQL_PID=Developer
+
+EXPOSE 1433

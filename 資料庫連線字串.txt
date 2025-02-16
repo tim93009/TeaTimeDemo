@@ -9,7 +9,8 @@ Server=LAPTOP-7GET9CKD;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerC
 Server=DESKTOP-AVM54SB;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerCertificate=true
 
 Render：
-postgresql://teatimetest02_user:M5vJtVpwgkcCsrPnjrZApMXN9hmm56et@dpg-cuosiedds78s738o2f20-a/teatimetest02
+Server=192.168.1.103,1433;Database=TeaTime;User Id=sa;Password=P@ssw0rd;
+
 
 
 

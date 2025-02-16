@@ -8,6 +8,11 @@ Server=LAPTOP-7GET9CKD;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerC
 資策會電腦：
 Server=DESKTOP-AVM54SB;Database=TeaTimeDemo;Trusted_Connection=True;TrustServerCertificate=true
 
+Render：
+postgresql://teatimetest02_user:M5vJtVpwgkcCsrPnjrZApMXN9hmm56et@dpg-cuosiedds78s738o2f20-a/teatimetest02
+
+
+
 
 
 
